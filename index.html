@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>مولد تصاميم الأخبار </title>
+<link href="images/logo.svg" rel="icon">
+<link rel="stylesheet" href="style.css">
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+
+<body>
+
+<h2 style="color: #094239;">مولد تصاميم الأخبار</h2>
+<h3 style="color: #427f77; font-family: 'QomraMedium'; margin-top: -25px;" >وزارة التعليم العالي و البحث العلمي</h2>
+
+<div class="controls">
+  <input type="text" id="titleInput" placeholder="عنوان الخبر" style="font-family:'QomraLight'">
+  <br>
+  <textarea id="contentInput" placeholder="نص الخبر" style="font-family:'QomraLight'"></textarea>
+</div>
+
+<div class="size-buttons">
+  <!-- <button onclick="setTemplate('story')">ستوري 1080x1920</button> -->
+  <!-- <button onclick="setTemplate('square')">مربع 1080x1080</button> -->
+  <!-- <button onclick="setTemplate('post')" style="font-family:'QomraBold'">بوست 1080x1350</button> -->
+</div>
+  
+<button onclick="generate()">تحديث النص</button>
+<button onclick="download()">تحميل الصورة</button>
+<div class="template-grid">
+
+  <img src="templates/1.jpg"
+       onclick="setTemplate('1.jpg','layout1', this)">
+
+  <img src="templates/2.jpg"
+       onclick="setTemplate('2.jpg','layout2', this)">
+
+  <img src="templates/3.jpg"
+       onclick="setTemplate('3.jpg','layout3', this)">
+
+</div>
+
+<div class="font-controls">
+
+  <label>حجم العنوان</label>
+  <input type="range" min="30" max="150" value="70" 
+         id="titleSize"
+         oninput="changeTitleSize(this.value)"> 
+
+  <label>حجم النص</label>
+  <input type="range" min="20" max="100" value="40"
+         id="contentSize"
+         oninput="changeContentSize(this.value)">
+         
+<div class="position-controls">
+  <label>تحريك النص عمودياً</label>
+  <input type="range"
+         min="0"
+         max="1500"
+         value="300"
+         id="verticalPosition"
+         oninput="moveText(this.value)">
+
+</div>
+</div>
+
+
+
+<div class="preview-frame">
+<div id="design">
+  <div class="overlay">
+    <h1 id="newsTitle">عنوان الخبر</h1>
+    <p id="newsContent">نحن هنا لنبني جسوراً من المعرفة تربط بين الشغف والإنجاز، حيث تتحول المعلومة المجردة إلى مهارة ملموسة تفتح أبواب المستقبل</p>
+  </div>
+</div>
+</div>
+
+
+
+<script>
+
+function setTemplate(imageName, layoutClass, element) {
+
+  const design = document.getElementById("design");
+
+  // تغيير الخلفية
+  design.style.backgroundImage = "url('templates/" + imageName + "')";
+  design.style.backgroundSize = "cover";
+  design.style.backgroundPosition = "center";
+
+  // حذف أي layout سابق
+  design.className = "";
+  design.classList.add(layoutClass);
+
+  // إزالة التحديد من جميع الصور
+  document.querySelectorAll(".template-grid img")
+    .forEach(img => img.classList.remove("active"));
+
+  // تحديد الصورة المختارة
+  if(element){
+    element.classList.add("active");
+  }
+
+}
+
+function generate() {
+  document.getElementById("newsTitle").innerText =
+    document.getElementById("titleInput").value;
+
+  document.getElementById("newsContent").innerText =
+    document.getElementById("contentInput").value;
+}
+
+function download() {
+
+  const title = document.getElementById("titleInput").value;
+
+  let fileName = title ? title : "news";
+
+  fileName = fileName
+    .replace(/[\\/:*?"<>|]/g, "")
+    .replace(/\s+/g, "_");
+
+  html2canvas(document.querySelector("#design")).then(canvas => {
+    let link = document.createElement("a");
+    link.download = fileName + ".png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  });
+
+}
+
+function changeTitleSize(size) {
+  document.getElementById("newsTitle").style.fontSize = size + "px";
+}
+
+function changeContentSize(size) {
+  document.getElementById("newsContent").style.fontSize = size + "px";
+}
+
+function moveText(value) {
+  document.querySelector(".overlay").style.top = value + "px";
+}
+
+window.onload = function() {
+
+  // تفعيل أول قالب تلقائياً
+  const firstTemplate = document.querySelector(".template-grid img");
+  setTemplate("1.jpg", "layout1", firstTemplate);
+
+};
+
+</script>
+</body>
+</html>
