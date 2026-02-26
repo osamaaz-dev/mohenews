@@ -1,0 +1,205 @@
+body {
+  margin: 0;
+  background: url(images/BG.jpg);
+  /* background: #eeeadf; */
+  font-family: 'QomraBlack';
+  direction: rtl;
+  text-align: center;
+}
+button{
+    background: #b8a678;
+  font-family: 'QomraLight';
+  color: #ffffff;
+  margin: 10px;
+    width: 150px;
+    height: 50px;
+}
+.controls {
+  margin: 20px;
+}
+
+input, textarea {
+  width: 400px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.size-buttons button {
+  margin: 10px;
+  padding: 10px 20px;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#design {
+  width: 1080px;
+  height: 1350px;
+  margin: 30px auto;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  /* scale: 0.5; */
+}
+
+/* مشان يكون ثابت دائما : */
+/* .overlay {
+  padding: 80px;
+  color: white;
+} */
+
+.overlay {
+  position: absolute;
+  
+  top: 80px;   /* نقطة البداية */
+  right: 80px;
+  left: 80px;
+  text-align: right;
+  transition: 0.2s ease;
+}
+
+#newsTitle {
+  font-family: 'QomraBlack';
+  font-size: 70px;
+  align-items: center;
+  margin-top: 360px;
+  margin-bottom: -30px;
+  margin-right: 20px;
+  color: #b9a779;
+}
+
+#newsContent {
+  font-family: 'QomraRegular';
+  font-size: 35px;
+  line-height: 1.6;
+  
+  margin-right: 20px;
+  justify-self: start;
+  direction: rtl; /* اتجاه النص من اليمين لليسار */
+  text-align: justify; /* ضبط النص */
+  text-justify: inter-word; /* تحسين التباعد بين الكلمات */
+}
+
+/* =========================
+   CUSTOM FONT
+========================= */
+
+@font-face {
+  font-family: 'QomraBlack';
+  src: url('fonts/itfQomraArabic-Black.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'QomraBold';
+  src: url('fonts/itfQomraArabic-Bold.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'QomraMedium';
+  src: url('fonts/itfQomraArabic-Medium.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'QomraRegular';
+  src: url('fonts/itfQomraArabic-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'QomraLight';
+  src: url('fonts/itfQomraArabic-Light.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-controls {
+  margin: 20px;
+}
+
+.font-controls label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.font-controls input[type="range"] {
+  width: 300px;
+}
+
+.preview-frame {
+  display: inline-block;
+  /* padding: 20px; */
+  /* background: #427f77;      */
+  border: 2px solid #094239;   
+  /* border-radius: 20px;         */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+h2{
+    font-size: 40px;
+}
+
+
+.template-grid {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px;
+}
+
+.template-grid img {
+  width: 120px;
+  cursor: pointer;
+  border: 3px solid transparent;
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+.template-grid img:hover {
+  transform: scale(1.05);
+}
+
+.template-grid img.active {
+  border: 3px solid #00ff88;
+}
+
+/* قالب 1 */
+.layout1 .overlay {
+  color: #ffffff;
+  position: absolute;
+  margin-left: 420px;
+  margin-right: 10px;
+  bottom: 150px;
+  right: 80px;
+  left: 80px;
+  text-align: right;
+}
+
+/* قالب 2 */
+.layout2 .overlay {
+  position: absolute;
+  top: 250px;
+  right: 100px;
+  margin-top: 40px;
+  margin-left: 40px;
+  margin-right: 40px;
+  left: 100px;
+  text-align: center;
+}
+
+/* قالب 3 */
+.layout3 .overlay {
+  position: absolute;
+  bottom: 300px;
+  right: 60px;
+  left: 60px;
+  text-align: right;
+  margin-top: 75px;
+  margin-left: 450px;
+  margin-right: 20px;
+}
